@@ -1,0 +1,33 @@
+/* Styles go here */
+
+.my-controller {
+  padding: 5px;
+  margin: 3px;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 10px;
+  margin-right: 40px;
+}
+.btn {
+  float: right;
+}
+.my-controller small {
+  color: #c99;
+}
+.other-controller {
+  padding: 2px;
+  margin: 3px;
+}
+.other-controller small {
+  color: #99c;
+}
+.third-controller {
+  border: 1px solid #cfc;
+  padding: 5px;
+  margin: 3px;
+}
+.third-controller small {
+  color: #9c9;
+}
