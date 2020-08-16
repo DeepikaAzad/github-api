@@ -11,6 +11,7 @@ To run the project:
 3. Create .env from .env.example.
 4. By default, the application is launched 3000 port. To modify, update .env file.
 5. Replace your OAuth Token in .env file with `GITHUB_API_KEY` and GitHub username with `GITHUB_USER`.
+7. Run command `node index`. 
 6. Go to Browser and hit http://localhost:3000/
   
 Api: 
@@ -27,8 +28,7 @@ Technology:
 Known Issues:
 * Implemented very basic frontend.
 * Not implemented unit testing.
-* On page load followed member should be shown already followed but on `Follow` button click will get to know the member is already followed.
-* Not well-tested.
+* On page load, followed member should be shown already followed but click on `Follow` button will get to know the member is already followed.
  
  
 Please feel free to contact me with any queries.
