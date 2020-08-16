@@ -1,46 +1,39 @@
-# Clevero Full Stack Hiring Challenge
-
+# Github API Demo
+ 
 System Requirements: Node 6.x+
-
+ 
 Before starting the project,
-    * Update the mongoDB URL: ./models/index.js
-    * Create a collection named 'taskCategories' and run the migration in the project: migration.sql
-
+* Get Access Token from your GitHub account, make sure you have allowed `user:follow` scope while creating token.
+ 
 To run the project:
-    1. cd to project directory.
-    2. npm install
-    3. By default, application is launched@3000 port. To modify, update the ./index.js file.
-    4. If modifying the port, then also update the '~.service.js' baseURL port number.
+1. cd to the project directory.
+2. npm install
+3. Create .env from .env.example.
+4. By default, the application is launched 3000 port. To modify, update .env file.
+5. Replace your OAuth Token in .env file with `GITHUB_API_KEY` and GitHub username with `GITHUB_USER`.
+6. Go to Browser and hit http://localhost:3000/
+  
+Api: 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e67f3ed98833d45fc393)
 
-
-Feauters:
-1. Have implemented secure oauth register/login using passport-local.
-2. Have implemented user based ToDo App.
-3. Each logged-in user, will be able to add todo tasks to the list.
-4. Added due date functionality.
-5. Added Lable-wise task curation.
-6. Can mark a task as completed, which is persisted.
-7. User can delete the tasks after marking them as completed.
-8. All the APIs are securly oauth protected and data sharing between the Front-End and Back-End is in JSON.
-9. All the users, and their corresponding data is persisted in MongoDB, along with hashed passwords.
-10. Code is very modular, following the standard pratices with basic documentaion.
-
-
+Features:
+1. Have implemented Facebook/react repository's fork members list with pagination.
+2. Users can follow the fork members.
+ 
 Technology:
 * Express
-* Passport-local
 * Angular 1.4 - I am not well-versed with Angular2.
-
-
+ 
 Known Issues:
-* Label CSS is hard-coded to only given in the list.
-* Cannot add more labels customised to each User.
-* No validations on due-date.
+* Implemented very basic frontend.
+* Not implemented unit testing.
+* On page load followed member should be shown already followed but on `Follow` button click will get to know the member is already followed.
 * Not well-tested.
+ 
+ 
+Please feel free to contact me with any queries.
+ 
+Deepika Azad
+azaddeepika05@gmail.com
 
 
-Please feel free to contact me for any queries.
-
-Sagar Chilukuri
-sagarch888@gmail.com
-+91 9480309290.

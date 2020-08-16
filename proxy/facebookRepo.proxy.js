@@ -35,7 +35,7 @@ class FacebookRepoProxy extends BaseProxy {
         const options = {
             url: `${this.baseUrl}/user/following/` + username,
             headers: {
-                'Authorization': process.env.GITHUB_API_KEY,
+                'Authorization': 'token ' + process.env.GITHUB_API_KEY,
                 'Accept': 'application/vnd.github.v3+json',
                 'User-Agent': process.env.GITHUB_USER,
                 'Content-Length': 0
@@ -54,7 +54,7 @@ class FacebookRepoProxy extends BaseProxy {
             const options = {
                 url: `${this.baseUrl}/users/` + process.env.GITHUB_USER + `/following/` + targetUser,
                 headers: {
-                    'Authorization': process.env.GITHUB_API_KEY,
+                    'Authorization': 'token ' + process.env.GITHUB_API_KEY,
                     'Accept': 'application/vnd.github.v3+json',
                     'User-Agent': process.env.GITHUB_USER
                 }
