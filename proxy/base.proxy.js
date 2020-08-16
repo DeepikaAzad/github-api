@@ -26,19 +26,19 @@ class BaseProxy {
 				if (error) return reject(error);
 				if (response.statusCode >= 200 && response.statusCode < 300) {
 					try {
-						resolve(JSON.parse(response.body));
+						resolve(response);
 					} catch (error) {
 						resolve(response);
 					}
 				} else if (response.statusCode >= 400 && response.statusCode < 500) {
 					// TODO: Parse response body if its json and return the actual error
-					let msg = BaseProxy.getMessage(response.body, RESOURCE_NOT_FOUND);
+					const msg = BaseProxy.getMessage(response.body, RESOURCE_NOT_FOUND);
 					reject({
 						message: msg,
 						status: response.statusCode
 					});
 				} else {
-					let msg = BaseProxy.getMessage(response.body, HTTP_PROXY_ERROR);
+					const msg = BaseProxy.getMessage(response.body, HTTP_PROXY_ERROR);
 					reject({
 						message: msg,
 						status: response.statusCode

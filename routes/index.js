@@ -5,8 +5,7 @@ module.exports = function (app) {
             try {
                   const fbController = new FacebookRepoController();
                   const result = await fbController.getPaginatedMembers(request);
-                  const statusCode = result.status || 200;
-                  return response.status(statusCode).send(result);
+                  return response.send(result);
             } catch (error) {
                   return response.status(500).send({
                         success: false,
@@ -20,8 +19,7 @@ module.exports = function (app) {
             try {
                   const fbController = new FacebookRepoController();
                   const result = await fbController.followUser(request.params.username);
-                  const statusCode = result.status || 200;
-                  return response.status(statusCode).send(result);
+                  return response.send(result);
             } catch (error) {
                   return response.status(500).send({
                         success: false,

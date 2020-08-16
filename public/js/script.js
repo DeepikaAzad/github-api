@@ -1,6 +1,4 @@
-// Code goes here
-
-var angularApp = angular.module('homeApp', ['ngRoute', 'angularUtils.directives.dirPagination']);
+let angularApp = angular.module('homeApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'toastr']);
 
 angularApp.config(function ($routeProvider) {
 	$routeProvider
@@ -13,49 +11,51 @@ angularApp.config(function ($routeProvider) {
 		})
 });
 
-function MyController($scope, $repoService) {
 
+function MyController($scope, $repoService, toastr) {
 	$scope.currentPage = 1;
 	$scope.pageSize = 10;
 	$scope.members = [];
-	$scope.initPage = function () {
-		$scope.getForkMember();
-	}
+	$scope.totalMembers = 10;
 	
+	const num = 1;
+	$scope.initPage = function () {
+		$scope.getForkMember(num);
+	}
+
 	$scope.pageChangeHandler = function (num) {
+		$scope.getForkMember(num);
 		console.log('members page changed to ' + num);
 	};
 
-	$scope.getForkMember = function () {
-
-		$repoService.getPaginatedMembers($scope.pageSize).then(function successCallback(response) {
+	$scope.getForkMember = function (num) {
+		$repoService.getPaginatedMembers($scope.totalMembers, num).then(function successCallback(response) {
 			$scope.paginatedData = response.data;
-			console.log($scope.paginatedData);
-
-			const rows = $scope.paginatedData.rows;
-			$scope.members = rows;
+			$scope.totalMembers = $scope.paginatedData.total_page || 100;
+			$scope.members = $scope.paginatedData.data;
 		}, function errorCallback(error) {
 			// @TODO: Handle the error properly instead of alert.
+			toastr.error('Internal server error, Please contact support team.');
 			console.log(error);
 		});
 	}
 
-	$scope.followForkMember = function (username) {
+	$scope.followForkMember = function (username,index) {
 
-		$repoService.followForkMember(username).then(function successCallback(response) {	
-			console.log(response);
+		$repoService.followForkMember(username).then(function successCallback(response) {
+			if (response.data.success) {
+				$scope.members[index].disabled = true;
+				if(response.data.already_followed) {
+					toastr.info('User followed already...');
+				} else {
+					toastr.success('User followed successfully...');
+				}
+			}
 		}, function errorCallback(error) {
 			// @TODO: Handle the error properly instead of alert.
-			console.log(error);
+			toastr.warning('Internal server error!');
 		});
 	}
-}
-
-function OtherController($scope) {
-	$scope.pageChangeHandler = function (num) {
-		console.log('going to page ' + num);
-	};
 }
 
 angularApp.controller('MyController', MyController);
-angularApp.controller('OtherController', OtherController);
